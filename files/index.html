@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aerch Linux</title>
+<meta name="description" content="Aerch Linux is an Arch-based distro with KDE Plasma and a graphical installer. Beta available now.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap">
+<style>
+:root {
+  --bg: #050b1c;
+  --bg2: #0b1f4a;
+  --cyan: #38e8ff;
+  --blue: #1a6bff;
+  --text: #eaf6ff;
+  --muted: #9db6d4;
+  --glass: rgba(255, 255, 255, 0.07);
+  --glass-edge: rgba(255, 255, 255, 0.18);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text);
+  background:
+    radial-gradient(60rem 40rem at 80% -10%, rgba(56, 232, 255, 0.28), transparent 60%),
+    radial-gradient(50rem 40rem at 0% 30%, rgba(26, 107, 255, 0.35), transparent 60%),
+    linear-gradient(180deg, var(--bg2), var(--bg) 70%);
+  background-attachment: fixed;
+}
+a { color: var(--cyan); }
+a:focus-visible, .btn:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+.wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 0; }
+.brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.25rem; text-decoration: none; color: var(--text); }
+.brand img { width: 1.75rem; height: auto; }
+nav .links { display: flex; gap: 1.5rem; }
+nav .links a { color: var(--muted); text-decoration: none; }
+nav .links a:hover { color: var(--text); }
+
+.hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; padding: 4rem 0 5rem; }
+h1 { font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1; margin: 0 0 1.2rem; font-weight: 700; letter-spacing: -0.03em; }
+h1 span { background: linear-gradient(90deg, var(--blue), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lead { font-size: 1.25rem; color: var(--muted); max-width: 30rem; margin: 0 0 2rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.btn {
+  display: inline-block; padding: 0.85rem 1.7rem; border-radius: 999px;
+  font-weight: 500; font-size: 1.05rem; text-decoration: none;
+  background: linear-gradient(90deg, var(--blue), var(--cyan)); color: #03101f;
+}
+.btn.ghost { background: var(--glass); color: var(--text); border: 1px solid var(--glass-edge); }
+.note { color: var(--muted); font-size: 0.95rem; margin-top: 1rem; }
+
+.logo-panel {
+  aspect-ratio: 1; display: grid; place-items: center; border-radius: 2rem;
+  background: var(--glass); border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.logo-panel img { width: 68%; height: auto; filter: drop-shadow(0 0 40px rgba(56, 232, 255, 0.45)); }
+
+section { padding: 2.5rem 0; }
+h2 { font-size: 2rem; margin: 0 0 1.5rem; font-weight: 500; letter-spacing: -0.01em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; }
+.card {
+  padding: 1.6rem; border-radius: 1.25rem;
+  background: var(--glass); border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+}
+.card h3 { margin: 0 0 0.5rem; font-size: 1.2rem; font-weight: 500; }
+.card p { margin: 0; color: var(--muted); }
+.reqs { list-style: none; margin: 0; padding: 0; }
+.reqs li { padding: 0.6rem 0; border-bottom: 1px solid var(--glass-edge); display: flex; justify-content: space-between; gap: 1rem; }
+.reqs li:last-child { border-bottom: 0; }
+.reqs b { font-weight: 500; }
+.reqs span { color: var(--muted); text-align: right; }
+footer { padding: 3rem 0 4rem; color: var(--muted); font-size: 0.95rem; }
+
+@media (max-width: 52rem) {
+  .hero { grid-template-columns: 1fr; padding-top: 2rem; }
+  .logo-panel { max-width: 20rem; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#top" id="top">
+      <img src="logo.png" alt="" width="28" height="27">
+      Aerch
+    </a>
+    <div class="links">
+      <a href="#download">Download</a>
+      <a href="https://github.com/YOURNAME/aerch">GitHub</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1><span>Aerch</span> Linux</h1>
+      <p class="lead">An Arch-based desktop with KDE Plasma and a graphical installer. The beta is out now.</p>
+      <div class="actions">
+        <a class="btn" href="#download">Download the beta</a>
+        <a class="btn ghost" href="https://github.com/YOURNAME/aerch">View on GitHub</a>
+      </div>
+      <p class="note">The official release is planned for December 2026.</p>
+    </div>
+    <div class="logo-panel">
+      <img src="logo.png" alt="Aerch Linux logo" width="436" height="418">
+    </div>
+  </header>
+
+  <section>
+    <h2>What you get</h2>
+    <div class="grid">
+      <div class="card"><h3>Arch underneath</h3><p>Built on Arch Linux, so you get rolling updates and the Arch package ecosystem.</p></div>
+      <div class="card"><h3>KDE Plasma desktop</h3><p>A full Plasma desktop on the live ISO, ready to try before you install.</p></div>
+      <div class="card"><h3>Graphical installer</h3><p>Install to your disk with Calamares. Open the installer from the desktop.</p></div>
+    </div>
+  </section>
+
+  <section id="download">
+    <h2>Download</h2>
+    <div class="card">
+      <p style="color:var(--text);margin-bottom:1rem">Aerch Linux Beta (2026.11)</p>
+      <div class="actions">
+        <a class="btn" href="#">Download the ISO</a>
+      </div>
+      <p class="note">Write the ISO to a USB drive with a tool like balenaEtcher or Ventoy, then boot from it.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Requirements</h2>
+    <div class="card">
+      <ul class="reqs">
+        <li><b>Processor</b><span>64-bit (x86_64)</span></li>
+        <li><b>Memory</b><span>4 GB RAM or more recommended</span></li>
+        <li><b>Storage</b><span>20 GB or more free disk space</span></li>
+        <li><b>Boot mode</b><span>UEFI recommended</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Aerch Linux is an independent project based on Arch Linux. This is a beta, so expect rough edges and report what you find on GitHub.
+  </footer>
+</div>
+</body>
+</html>
